@@ -41,6 +41,7 @@ h1{margin:0;font-size:1.6rem;font-weight:800}
 .tab.aux{border-style:dashed;background:#fbfbfe}
 .pglink{font-size:.9rem;font-weight:700;text-decoration:none;color:#fff;background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:999px;padding:4px 14px;box-shadow:0 3px 10px rgba(79,70,229,.3)}
 .tab.grp{font-weight:700}.tab.grp.in{border-color:var(--accent);color:var(--accent);box-shadow:inset 0 -3px 0 var(--accent)}
+.tab .ti{width:26px;height:26px;border-radius:50%;object-fit:cover;vertical-align:middle;margin:-4px 0 -3px;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
 .tabs.sub{padding-top:0;margin-top:-4px}.tabs.sub:empty{display:none}
 .tabs.sub .tab{font-size:.88rem;padding:5px 9px 5px 10px;background:#fbfbff}.tabs.sub .tab.on{background:var(--accent)}
 .search{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
@@ -244,9 +245,12 @@ function renderTabs() {
     '<span class="tabsep"></span>' + D.tabs.filter(t => !aux.includes(t.k)).map(t => one(t, "")).join("");
 }
 
+// a small round picture instead of the emoji when the tab has one ("ti", the special days catalog, 17.10)
+const tabIcon = t => t.ti ? `<img class="ti" src="${esc(t.ti)}" alt="" loading="lazy">` : t.e;
+
 function renderGroupTabs(cnt) {
   const live = !state.q && state.fmt !== "fav", cur = live ? (isGroup(state.tab) ? state.tab : TG[state.tab]) : null;
-  const one = (t, cls) => `<button class="tab${cls}${live && t.k === state.tab ? " on" : ""}" data-k="${esc(t.k)}" title="${esc(t.l)}${t.y ? " · " + esc(t.y) : ""}">${t.e} ${esc(t.l.split(":")[0])}<span class="n">${cnt[t.k] || 0}</span></button>`;
+  const one = (t, cls) => `<button class="tab${cls}${live && t.k === state.tab ? " on" : ""}" data-k="${esc(t.k)}" title="${esc(t.l)}${t.y ? " · " + esc(t.y) : ""}">${tabIcon(t)} ${esc(t.l.split(":")[0])}<span class="n">${cnt[t.k] || 0}</span></button>`;
   document.getElementById("tabs").innerHTML = D.tabs.filter(t => !t.g).map(t => one(t, " aux")).join("") + '<span class="tabsep"></span>' +
     D.groups.filter(g => cnt[g.k]).map(g => one(g, " grp" + (cur === g.k && g.k !== state.tab ? " in" : ""))).join("");
   const sub = document.getElementById("subtabs");
