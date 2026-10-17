@@ -379,7 +379,7 @@ let BYKEY = {};
 // copies is the one that shares well. A <base> keeps every relative link (data, pictures, files) on the catalog itself.
 const DOC = location.href.split("#")[0];
 function tabUrl(k) {
-  if (!(D && D.share && D.tabs.some(t => t.k === k))) return "#" + encodeURIComponent(k);
+  if (!(D && D.share && (D.tabs.some(t => t.k === k) || isGroup(k)))) return "#" + encodeURIComponent(k);   // a tab or a group (month, era…)
   if (!document.querySelector("base")) { const b = document.createElement("base"); b.href = DOC; document.head.prepend(b); }
   return new URL(D.share + encodeURIComponent(k) + ".html", DOC).href;
 }
