@@ -191,7 +191,7 @@ FMT.gamma = ["🖥️", "Gamma", "#9333ea", "#f3e8ff"];
 const VERB = {gamma:"פתחו מצגת", pdf:"PDF להדפסה", word:"Word לעריכה", ppt:"פתחו מצגת", video:"▶ צפו בסרטון", game:"🎮 שחקו", web:"פתחו קישור",
   folder:"פתחו תיקייה", excel:"פתחו Excel", image:"צפו בתמונה", audio:"▶ האזינו"};
 // a Kol Toda video's written lesson, next to the video (written_lessons.py, 21.10)
-FMT.read = ["📄", "שיעור כתוב", "#0f766e", "#dcf3ef"]; VERB.read = "📄 השיעור הכתוב"; FMT.article = ["📖", "מאמר", "#7c2d12", "#fdf0e6"]; VERB.article = "📖 קראו את המאמר";
+FMT.read = ["📄", "שיעור כתוב", "#0f766e", "#dcf3ef"]; VERB.read = "📄 השיעור הכתוב"; FMT.article = ["📖", "מאמר", "#7c2d12", "#fdf0e6"]; VERB.article = "📖 קראו את המאמר"; FMT.all = ["📚", "כל החומרים", "#4c1d95", "#efe7fd"]; VERB.all = "📚 כל החומרים במקום אחד";
 const FILTERS = [["","הכל"],["pdf","להדפסה"],["word","לעריכה"],["ppt","מצגות"],["video","סרטונים"],["game","משחקים מקוונים"],["fav","♥ השמורים שלי"]];
 let D, state = {tab:null, q:"", fmt:"", src:"", grade:"", sort:"cv"}, PAGE = 40;
 const LS = k => "cat2_" + (D ? D.book : "") + "_" + k;
